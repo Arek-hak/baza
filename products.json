@@ -1,21 +1,22 @@
 [
   {
     "sku": "6855884",
-    "name": "Zawiesie ³añcuchowe 2-ciêgnowe WLL 4,25 tony; 1m / hak",
+    "name": "Zawiesie Å‚aÅ„cuchowe 2-ciÄ™gnowe WLL 4,25 tony; 1m / hak",
     "price_gross": 222.00,
     "currency": "PLN",
-    "variant_id": "2005",               // ID wariantu w Shoperze (zobacz ni¿ej)
+    "variant_id": "2005",               
     "custom_fields": {
-      "udzwig": 4.25,                       // udŸwig w kg
+      "udzwig": 4.25,                       
       "ciegna": "1-ciegno",
 	  "dlugosc": "1 metr",
-      "kat": "- 0°<ß<=45°",
+      "kat": "- 0Â°<ÃŸ<=45Â°",
 	  "skracane": "NIE",
-	  "ogniwo": "du¿e ogniwo",
+	  "ogniwo": "duÅ¼e ogniwo",
 	  "hak": "hak z zabezpieczeniem"
     },
     "url": "/Zawiesie-lancuchowe-2-ciegnowe-WLL-4,25-tony-1m-hak"
   },
 
  
+
 ]
