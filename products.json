@@ -15,8 +15,26 @@
 	  "hak": "hak z zabezpieczeniem"
     },
     "url": "/Zawiesie-lancuchowe-2-ciegnowe-WLL-4,25-tony-1m-hak"
-  }
+  },
+	{
+    "sku": "6855885",
+    "name": "Zawiesie łańcuchowe 2-cięgnowe WLL 4,25 tony; 1m / hak",
+    "price_gross": 222.00,
+    "currency": "PLN",
+    "variant_id": "2006",               
+    "custom_fields": {
+      "udzwig": 8,                       
+      "ciegna": "1-ciegno",
+	  "dlugosc": "1 metr",
+      "kat": "- 0°<ß<=45°",
+	  "skracane": "NIE",
+	  "ogniwo": "duże ogniwo",
+	  "hak": "hak z zabezpieczeniem"
+    },
+    "url": "/Zawiesie-lancuchowe-2-ciegnowe-WLL-4,25-tony-1m-hak"
+  },
 ]
+
 
 
 
