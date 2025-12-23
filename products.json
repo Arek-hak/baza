@@ -6,7 +6,7 @@
     "currency": "PLN",
     "variant_id": "2005",               
     "custom_fields": {
-      "udzwig": 4.25,                       
+      "udzwig": 4,                       
       "ciegna": "1-ciegno",
 	  "dlugosc": "1 metr",
       "kat": "- 0°<ß<=45°",
@@ -20,3 +20,4 @@
  
 
 ]
+
