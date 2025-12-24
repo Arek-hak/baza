@@ -1,1 +1,92 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <title>Wyniki konfiguratora</title>
+  <style>
+    .product-card {border:1px solid #ccc; padding:10px; margin:10px;}
+    .product-card img {max-width:200px;}
+  </style>
+</head>
+<body>
+  <h1>Wyniki konfiguratora</h1>
+  <div id="summary"></div>
+  <div id="cards"></div>
+
+  <script>
+  document.addEventListener('DOMContentLoaded', () => {
+    function getParam(name){
+      const url = new URL(window.location);
+      return url.searchParams.get(name) || '';
+    }
+
+    const udzwig   = getParam('udzwig');
+    const ciegna   = getParam('ciegna');
+    const dlugosc  = getParam('dlugosc');
+    const kat      = getParam('kat');
+    const skracane = getParam('skracane');
+    const ogniwo   = getParam('ogniwo');
+    const hak      = getParam('hak');
+
+    function norm(str){ return (str||'').normalize('NFC').trim().toLowerCase(); }
+
+    function renderSummary(){
+      const summaryEl = document.getElementById('summary');
+      if (!summaryEl) return;
+      summaryEl.innerHTML = `
+        <table>
+          <tr><td>Udźwig</td><td>${udzwig}</td></tr>
+          <tr><td>Cięgno</td><td>${ciegna}</td></tr>
+          <tr><td>Długość</td><td>${dlugosc}</td></tr>
+          <tr><td>Kąt</td><td>${kat}</td></tr>
+          <tr><td>Skracane</td><td>${skracane}</td></tr>
+          <tr><td>Ogniwo</td><td>${ogniwo}</td></tr>
+          <tr><td>Hak</td><td>${hak}</td></tr>
+        </table>`;
+    }
+    renderSummary();
+
+    const PRODUCTS_URL = 'https://arek-hak.github.io/baza/products.json';
+
+    async function loadAndRender(){
+      const container = document.getElementById('cards');
+      try {
+        const resp = await fetch(PRODUCTS_URL);
+        const data = await resp.json();
+        const all = Array.isArray(data) ? data : data.products;
+
+        const filtered = all.filter(p => {
+          const cf = p.custom_fields || {};
+          return (!udzwig   || Number(cf.udzwig) === Number(udzwig)) &&
+                 (!ciegna   || norm(cf.ciegna)   === norm(ciegna)) &&
+                 (!dlugosc  || norm(cf.dlugosc)  === norm(dlugosc)) &&
+                 (!kat      || Number(cf.kat)    === Number(kat)) &&
+                 (!skracane || norm(cf.skracane) === norm(skracane)) &&
+                 (!ogniwo   || norm(cf.ogniwo)   === norm(ogniwo)) &&
+                 (!hak      || norm(cf.hak)      === norm(hak));
+        });
+
+        if (!filtered.length){
+          container.innerHTML = '<p>Brak produktów spełniających kryteria.</p>';
+          return;
+        }
+
+        container.innerHTML = filtered.map(p => `
+          <div class="product-card">
+            <img src="${p.image}" alt="${p.name}">
+            <h3>${p.name}</h3>
+            <div>SKU: ${p.sku}</div>
+            <a href="${p.url}" target="_blank">Zobacz produkt</a>
+          </div>
+        `).join('');
+      } catch(e){
+        container.innerHTML = '<p>Błąd wczytywania danych.</p>';
+        console.error(e);
+      }
+    }
+    loadAndRender();
+  });
+  </script>
+</body>
+</html>
 
