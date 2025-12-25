@@ -1,21 +1,144 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-  <meta charset="UTF-8">
-  <title>Wyniki konfiguratora</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wyniki konfiguratora | hakowy.pl</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
   <style>
-    .product-card {border:1px solid #ccc; padding:10px; margin:10px;}
-    .product-card img {max-width:200px;}
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: #f5f7fa;
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
+
+    header {
+      background: #003366;
+      color: white;
+      padding: 1rem 2rem;
+      text-align: center;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 2rem auto;
+      padding: 1rem;
+    }
+
+    .section {
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    h2 {
+      margin-top: 0;
+      color: #003366;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+    }
+
+    td {
+      padding: 0.5rem 0.75rem;
+      border-bottom: 1px solid #eee;
+    }
+
+    td:first-child {
+      font-weight: bold;
+      color: #555;
+      width: 40%;
+    }
+
+    .product-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      border-radius: 12px;
+      background: #fff;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      padding: 1rem;
+    }
+
+    .product-card img {
+      max-width: 100%;
+      border-radius: 8px;
+      margin-bottom: 1rem;
+    }
+
+    .product-card h3 {
+      margin: 0.5rem 0;
+      color: #003366;
+    }
+
+    .sku {
+      font-size: 0.9rem;
+      color: #777;
+      margin-bottom: 1rem;
+    }
+
+    .btn {
+      background: #cc0000;
+      color: white;
+      padding: 0.6rem 1.2rem;
+      border: none;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .btn:hover {
+      background: #a80000;
+    }
+
+    .actions {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-top: 1rem;
+    }
+
+    @media (max-width: 600px) {
+      .actions {
+        flex-direction: column;
+      }
+    }
   </style>
 </head>
 <body>
-  <h1>Wyniki konfiguratora</h1>
-  <div id="summary"></div>
-  <div id="cards"></div>
+  <header>
+    <h1>Wyniki konfiguratora</h1>
+  </header>
+
+  <div class="container">
+    <div class="section" id="summary-section">
+      <h2>Wybrane parametry</h2>
+      <div id="summary"></div>
+    </div>
+
+    <div class="section" id="product-section">
+      <h2>Pasujący produkt</h2>
+      <div id="cards"></div>
+    </div>
+
+    <div class="section actions">
+      <a href="konfigurator.html" class="btn">Wypełnij ponownie</a>
+      <button class="btn" onclick="copyLink()">Udostępnij wynik</button>
+    </div>
+  </div>
 
   <script>
-  document.addEventListener('DOMContentLoaded', () => {
-    function getParam(name){
+    function getParam(name) {
       const url = new URL(window.location);
       return url.searchParams.get(name) || '';
     }
@@ -28,28 +151,34 @@
     const ogniwo   = getParam('ogniwo');
     const hak      = getParam('hak');
 
-    function norm(str){ return (str||'').normalize('NFC').trim().toLowerCase(); }
-
-    function renderSummary(){
-      const summaryEl = document.getElementById('summary');
-      if (!summaryEl) return;
-      summaryEl.innerHTML = `
-        <table>
-          <tr><td>Udźwig</td><td>${udzwig}</td></tr>
-          <tr><td>Cięgno</td><td>${ciegna}</td></tr>
-          <tr><td>Długość</td><td>${dlugosc}</td></tr>
-          <tr><td>Kąt</td><td>${kat}</td></tr>
-          <tr><td>Skracane</td><td>${skracane}</td></tr>
-          <tr><td>Ogniwo</td><td>${ogniwo}</td></tr>
-          <tr><td>Hak</td><td>${hak}</td></tr>
-        </table>`;
+    function norm(str) {
+      return (str || '').normalize('NFC').trim().toLowerCase();
     }
-    renderSummary();
 
-    const PRODUCTS_URL = 'https://arek-hak.github.io/baza/products.json';
+    function renderSummary() {
+      const summaryEl = document.getElementById('summary');
+      const rows = [
+        ['Udźwig', udzwig ? `${udzwig} kg` : '-'],
+        ['Cięgno', ciegna || '-'],
+        ['Długość', dlugosc || '-'],
+        ['Kąt', kat ? `${kat}°` : '-'],
+        ['Skracane', skracane || '-'],
+        ['Ogniwo', ogniwo || '-'],
+        ['Hak', hak || '-']
+      ];
 
-    async function loadAndRender(){
+      let html = '<table>';
+      rows.forEach(([label, val]) => {
+        html += `<tr><td>${label}</td><td>${val}</td></tr>`;
+      });
+      html += '</table>';
+      summaryEl.innerHTML = html;
+    }
+
+    async function loadAndRender() {
       const container = document.getElementById('cards');
+      const PRODUCTS_URL = 'https://arek-hak.github.io/baza/products.json';
+
       try {
         const resp = await fetch(PRODUCTS_URL);
         const data = await resp.json();
@@ -66,27 +195,41 @@
                  (!hak      || norm(cf.hak)      === norm(hak));
         });
 
-        if (!filtered.length){
+        if (!filtered.length) {
           container.innerHTML = '<p>Brak produktów spełniających kryteria.</p>';
           return;
         }
 
-        container.innerHTML = filtered.map(p => `
+        const p = filtered[0]; // pierwszy pasujący
+        const img = p.image || 'https://via.placeholder.com/400x300?text=Brak+zdjęcia';
+        const name = p.name || 'Produkt bez nazwy';
+        const sku = p.sku || '—';
+        const link = p.url || '#';
+
+        container.innerHTML = `
           <div class="product-card">
-            <img src="${p.image}" alt="${p.name}">
-            <h3>${p.name}</h3>
-            <div>SKU: ${p.sku}</div>
-            <a href="${p.url}" target="_blank">Zobacz produkt</a>
+            <img src="${img}" alt="${name}">
+            <h3>${name}</h3>
+            <div class="sku">SKU: ${sku}</div>
+            <a href="${link}" class="btn" target="_blank">Zobacz produkt</a>
           </div>
-        `).join('');
-      } catch(e){
+        `;
+      } catch (e) {
         container.innerHTML = '<p>Błąd wczytywania danych.</p>';
         console.error(e);
       }
     }
-    loadAndRender();
-  });
+
+    function copyLink() {
+      navigator.clipboard.writeText(window.location.href).then(() => {
+        alert('Link do wyniku został skopiowany do schowka!');
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      renderSummary();
+      loadAndRender();
+    });
   </script>
 </body>
 </html>
-
