@@ -15,10 +15,10 @@
         }
     },
     {
-        "sku": "6855885",
-        "name": "2 Zawiesie łańcuchowe 2-cięgnowe WLL 4,25 tony; 1m / hak",
-        "image": "https://www.hakowy.pl/environment/cache/images/productGfx_12482_800_800/zawiesie-lancuchowe-2-ciegna-haki-kl8.webp",
-        "url": "https://www.hakowy.pl/Zawiesie-lancuchowe-2-ciegnowe-WLL-4,25-tony-1m-hak",
+        "sku": "6854880",
+        "name": "Zawiesie łańcuchowe 3-cięgnowe skracane WLL 11,2 tony; 1,5m / hak",
+        "image": "https://www.hakowy.pl/environment/cache/images/productGfx_7190_800_800/zawiesie-lancuchowe-3-ciegna-skracane-z-hakami-klasa-8.webp",
+        "url": "https://www.hakowy.pl/zawiesie-lancuchowe-3-ciegnowe-skracane-wll-11,2-tony-1,5m-hak",
         "custom_fields": {
             "udzwig": 4,
             "ciegna": "1-ciegno",
@@ -30,6 +30,7 @@
         }
     }
 ]
+
 
 
 
