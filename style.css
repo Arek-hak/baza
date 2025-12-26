@@ -1,3 +1,4 @@
+/* Ogólne */
 body {
   font-family: 'Roboto', sans-serif;
   background: #f5f7fa;
@@ -6,13 +7,15 @@ body {
   color: #333;
 }
 
+/* Nagłówek */
 header {
-  background: linear-gradient(90deg, #003366, #004080);
+  background: #003366;
   color: white;
   padding: 1rem 2rem;
   text-align: center;
 }
 
+/* Stopka */
 footer {
   background: #003366;
   color: white;
@@ -21,12 +24,14 @@ footer {
   font-size: 0.9rem;
 }
 
+/* Kontener */
 .container {
   max-width: 1000px;
   margin: 2rem auto;
   padding: 1rem;
 }
 
+/* Sekcje */
 .section {
   background: white;
   border-radius: 10px;
@@ -36,11 +41,73 @@ footer {
   animation: fadeInUp 0.6s ease;
 }
 
+/* Animacja wejścia */
 @keyframes fadeInUp {
   from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
+/* Tytuły */
+h2 {
+  margin-top: 0;
+  color: #003366;
+}
+
+/* Tabela parametrów */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+td {
+  padding: 0.5rem 0.75rem;
+  border-bottom: 1px solid #eee;
+}
+
+td:first-child {
+  font-weight: bold;
+  color: #555;
+  width: 40%;
+}
+
+/* Karta produktu */
+.product-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  padding: 1rem;
+  margin-bottom: 1rem;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.product-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+}
+
+.product-card img {
+  max-width: 100%;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+.product-card h3 {
+  margin: 0.5rem 0;
+  color: #003366;
+}
+
+.sku {
+  font-size: 0.9rem;
+  color: #777;
+  margin-bottom: 1rem;
+}
+
+/* Przyciski */
 .btn {
   background: #cc0000;
   color: white;
@@ -55,4 +122,18 @@ footer {
 
 .btn:hover {
   background: #a80000;
+}
+
+/* Akcje */
+.actions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+}
+
+@media (max-width: 600px) {
+  .actions {
+    flex-direction: column;
+  }
 }
