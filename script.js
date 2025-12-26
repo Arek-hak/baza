@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
   const getParam = name => new URLSearchParams(location.search).get(name) || '';
-  const norm = str => (str || '').normalize('NFC').trim().toLowerCase();
+  const norm = str => String(str || '').normalize('NFC').trim().toLowerCase();
 
   const params = {
     udzwig: getParam('udzwig'),
