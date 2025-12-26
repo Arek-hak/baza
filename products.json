@@ -5,28 +5,29 @@
         "image": "https://www.hakowy.pl/environment/cache/images/productGfx_12482_800_800/zawiesie-lancuchowe-2-ciegna-haki-kl8.webp",
         "url": "https://www.hakowy.pl/Zawiesie-lancuchowe-2-ciegnowe-WLL-4,25-tony-1m-hak",
         "custom_fields": {
-            "udzwig": 4,
+            "udzwig": "4",
             "ciegna": "1-ciegno",
             "dlugosc": "1 metr",
-            "kat": 30,
+            "kat": "30",
             "skracane": "NIE",
             "ogniwo": "duże ogniwo",
             "hak": "hak z zabezpieczeniem"
         }
     },
     {
-        "sku": "6855884",
+        "sku": "6855885",
         "name": "2 Zawiesie łańcuchowe 2-cięgnowe WLL 4,25 tony; 1m / hak",
         "image": "https://www.hakowy.pl/environment/cache/images/productGfx_12482_800_800/zawiesie-lancuchowe-2-ciegna-haki-kl8.webp",
         "url": "https://www.hakowy.pl/Zawiesie-lancuchowe-2-ciegnowe-WLL-4,25-tony-1m-hak",
         "custom_fields": {
-            "udzwig": 4,
+            "udzwig": "4",
             "ciegna": "1-ciegno",
             "dlugosc": "1 metr",
-            "kat": 30,
+            "kat": "30",
             "skracane": "NIE",
             "ogniwo": "duże ogniwo",
             "hak": "hak z zabezpieczeniem"
         }
     }
 ]
+
