@@ -1,2 +1,43 @@
-<link href="style.css" rel="stylesheet" />
-<script src="script.js" defer></script>
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wynik konfiguratora | hakowy.pl</title>
+  <link href="../wspolne/style.css" rel="stylesheet" />
+  <script src="../wspolne/html2pdf.min.js"></script>
+  <script src="../wspolne/script.js" defer></script>
+</head>
+<body>
+  <header>
+    <h1>Wynik konfiguratora zawiesi</h1>
+  </header>
+
+  <main class="container">
+    <div class="section" id="summary-section">
+      <h2>Wybrane parametry</h2>
+      <div id="summary">Wczytywanie…</div>
+    </div>
+
+    <div class="section" id="product-section">
+      <h2>Pasujące produkty</h2>
+      <div id="cards">Wczytywanie produktów…</div>
+    </div>
+
+    <div class="section actions">
+      <a href="index.html" class="btn">Wypełnij ponownie</a>
+      <button class="btn" onclick="copyLink()">Udostępnij wynik</button>
+      <button class="btn" onclick="exportToPDF()">Zapisz jako PDF</button>
+    </div>
+
+    <div id="debug" style="display:none; margin-top:2rem;" class="section">
+      <h3>Tryb debugowania</h3>
+      <pre id="debug-output"></pre>
+    </div>
+  </main>
+
+  <footer>
+    <p>© 2025 hakowy.pl – Wszystkie prawa zastrzeżone</p>
+  </footer>
+</body>
+</html>
